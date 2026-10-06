@@ -1,0 +1,14 @@
+node_modules
+.next
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store
+analyzer/.venv
+analyzer/models
+analyzer/preview
+__pycache__
+.next-static
+out
+ПАРКОВКИ_1.pdf
+public/maps
+.pages

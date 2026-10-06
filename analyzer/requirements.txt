@@ -1,0 +1,5 @@
+ultralytics
+pillow
+numpy
+shapely
+pymupdf

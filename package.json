@@ -1,0 +1,28 @@
+{
+  "name": "lviv-parking",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "extract": "python3 analyzer/extract_frames.py",
+    "analyze": "analyzer/.venv/bin/python analyzer/analyze.py",
+    "analyze:full": "analyzer/.venv/bin/python analyzer/analyze.py --redetect"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "next": "^16.3.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-leaflet": "^5.0.0",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.22",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}
