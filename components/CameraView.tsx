@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { CameraAnalysis } from "@/lib/types";
-import { BASE_PATH } from "@/lib/paths";
+import { BASE_PATH, IS_STATIC } from "@/lib/paths";
 import { BUSY_COLOR, FREE_COLOR } from "@/lib/status";
 
 const toPoints = (poly: [number, number][]) => poly.map(([x, y]) => `${x},${y}`).join(" ");
@@ -78,10 +78,13 @@ export default function CameraView({ camera }: { camera: CameraAnalysis }) {
         ) : (
           <span>Місця на цій камері ще не розмічені</span>
         )}
-        <label className="check">
-          <input type="checkbox" checked={showVehicles} onChange={(e) => setShowVehicles(e.target.checked)} />
-          Показати виявлені авто ({camera.vehicles.length})
-        </label>
+        {/* Debug aid: only in the local dev app, not on the public site. */}
+        {!IS_STATIC && (
+          <label className="check">
+            <input type="checkbox" checked={showVehicles} onChange={(e) => setShowVehicles(e.target.checked)} />
+            Показати виявлені авто ({camera.vehicles.length})
+          </label>
+        )}
       </div>
     </div>
   );
