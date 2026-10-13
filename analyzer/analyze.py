@@ -82,11 +82,16 @@ def main() -> None:
     ap.add_argument("--imgsz", type=int, default=1920)
     ap.add_argument("--conf", type=float, default=0.2)
     ap.add_argument("--redetect", action="store_true", help="ignore cached detections and re-run the model on every frame")
+    ap.add_argument("--only", help="comma-separated camera ids to process (others are kept as they are in analysis.json)")
+    ap.add_argument("--no-write", action="store_true", help="do not touch data/analysis.json")
+    ap.add_argument("--json", action="store_true", help="print the processed cameras as one 'RESULT_JSON {...}' line")
     args = ap.parse_args()
+    only = set(args.only.split(",")) if args.only else None
 
     model_name = Path(args.model).name
     params = f"{model_name}|{args.imgsz}|{args.conf}"
-    previous = {} if args.redetect else load_previous()
+    all_previous = load_previous()
+    previous = {} if args.redetect else all_previous
     spots_file = json.loads(SPOTS.read_text()) if SPOTS.exists() else {}
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     model = None
@@ -98,6 +103,8 @@ def main() -> None:
         if not re.fullmatch(r"\d+-\d+", path.stem):
             continue
         if enabled is not None and path.stem not in enabled:
+            continue
+        if only is not None and path.stem not in only:
             continue
         camera_id = path.stem
         with Image.open(path) as im:
@@ -142,6 +149,14 @@ def main() -> None:
         free = sum(1 for s in spots if not s["occupied"])
         print(f"{camera_id:>5}: {len(vehicles):2d} vehicles ({note}), spots free {free}/{len(spots)}")
 
+    if args.json:
+        print("RESULT_JSON " + json.dumps(cameras, ensure_ascii=False))
+    if args.no_write:
+        return
+
+    if only is not None:  # partial run: keep the other cameras' stored results
+        by_id = {**all_previous, **{c["cameraId"]: c for c in cameras}}
+        cameras = sorted(by_id.values(), key=lambda c: tuple(map(int, c["cameraId"].split("-"))))
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps({"generatedAt": now, "model": model_name, "cameras": cameras}, ensure_ascii=False))
     print(f"wrote {OUT.relative_to(ROOT)}")

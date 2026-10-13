@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
 import { LOCATIONS } from "@/lib/locations";
-import { DATA_URL } from "@/lib/paths";
+import { DATA_URL, IS_STATIC } from "@/lib/paths";
 import type { CameraAnalysis, LocationSummary } from "@/lib/types";
 import { getStatus, STATUS_COLOR, STATUS_LABEL, type Status } from "@/lib/status";
 import CameraView from "./CameraView";
@@ -102,6 +102,12 @@ export default function ParkingApp() {
       <main className="main">
         <ParkingMap locations={LOCATIONS} summaries={summaries} selectedId={selectedId} onSelect={select} />
         <div className="demo-badge">Демо: тестові кадри з PDF, не live</div>
+        {/* The agent needs the local server (LLM + YOLO), so it is not part of the static site. */}
+        {!IS_STATIC && (
+          <a className="agent-link" href="/agent">
+            🤖 Агент: знайти паркування
+          </a>
+        )}
 
         {selected && (
           <aside className="panel">

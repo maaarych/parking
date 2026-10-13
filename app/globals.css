@@ -317,3 +317,193 @@ body {
   color: #4b5563;
   line-height: 1.4;
 }
+
+/* ---- parking agent page ---- */
+.agent {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  padding: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.agent h1 {
+  font-size: 1.3rem;
+  margin: 8px 0;
+}
+
+.agent textarea {
+  width: 100%;
+  padding: 8px;
+  font: inherit;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.agent-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.agent-examples button {
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.agent-run {
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  background: #2563eb;
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.agent-run:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.agent-log {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.ev {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border-left: 4px solid #9ca3af;
+  background: #f3f4f6;
+}
+
+.ev b {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.ev code {
+  display: block;
+  font-size: 0.75rem;
+  color: #4b5563;
+  word-break: break-all;
+}
+
+.ev-start {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.ev-thought {
+  border-color: #8b5cf6;
+  background: #f5f3ff;
+}
+
+.ev-call {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.ev-result {
+  border-color: #9ca3af;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ev-result em {
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.ev-gate.ok {
+  border-color: #16a34a;
+  background: #f0fdf4;
+}
+
+.ev-gate.bad {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.ev-gate ul {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+
+.ev-gate li span {
+  font-weight: 700;
+}
+
+.ev-gate.ok li span {
+  color: #16a34a;
+}
+
+.ev-gate li em {
+  color: #6b7280;
+}
+
+.ev-error {
+  border-color: #dc2626;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.agent-result {
+  position: sticky;
+  top: 16px;
+  padding: 14px;
+  border: 2px solid #16a34a;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.agent-result h2 {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+}
+
+.agent-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 8px 0;
+}
+
+.agent-waze {
+  display: inline-block;
+  margin: 4px 0 12px;
+  padding: 8px 14px;
+  background: #33ccff;
+  color: #04202b;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.agent-link {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1000;
+  padding: 8px 12px;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}

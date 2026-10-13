@@ -11,6 +11,7 @@
     "analyze:full": "analyzer/.venv/bin/python analyzer/analyze.py --redetect"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
     "leaflet": "^1.9.4",
     "next": "^16.3.8",
     "react": "^19.3.0",

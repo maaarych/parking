@@ -12,3 +12,4 @@ out
 ПАРКОВКИ_1.pdf
 public/maps
 .pages
+.env*

@@ -26,7 +26,7 @@ jobs:
       - run: npm ci
       # The editor and the write APIs need a server (dev only), so they are not part of the static site.
       - name: Drop server-only routes
-        run: rm -rf app/api app/annotate
+        run: rm -rf app/api app/annotate app/agent
       - name: Build static site
         run: npm run build
         env:
